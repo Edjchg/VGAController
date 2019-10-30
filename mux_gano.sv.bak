@@ -1,0 +1,17 @@
+module mux_gano (input logic [1:0] gano,
+						output logic output_gano,
+						); 
+			
+			
+			always @(gano[0] or gano[1])begin
+				
+				case(gano)
+					2'b10 : output_gano <= 1'b1;
+					2'b01 : output_gano <= 0'b1;
+					
+					default: output_gano <= 1'b0;
+				
+				
+				endcase
+
+endmodule

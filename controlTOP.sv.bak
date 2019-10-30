@@ -1,0 +1,106 @@
+module controlTOP (input logic boton_Cuenta_Casilla, boton_Seleccionador,clk,rst,
+						 output logic [23:0] casilla_0_J1, casilla_1_J1, casilla_2_J1, casilla_3_J1, casilla_4_J1, casilla_5_J1, casilla_6_J1, casilla_7_J1, casilla_8_J1,
+						 output logic visible0,visible1,visible2,visible3,visible4,visible5,visible6,visible7,visible8);
+			
+			logic [3:0] contador,contador_seleccionador;
+			
+			logic [23:0] rgb0,rgb1,rgb2,rgb3,rgb4,rgb5,rgb6,rgb7,rgb8;
+			
+			logic visible0,visible1,visible2,visible3,visible4,visible5,visible6,visible7,visible8;
+			
+			logic cero,uno,dos,tres,cuatro,cinco, seis,siete,ocho;
+			
+			logic rdData0,rdData1,rdData2,rdData3,rdData4,rdData5,rdData6,rdData7,rdData8;
+			
+			
+			logic posX0,posY0, posX1,posY1, posX2,posY2, posX3,posY3, posX4,posY4, posX5,posY5, posX6,posY6, posX7,posY7, posX8,posY8;
+			
+			
+			
+			 contadorPushButton boton1(clk, rst, boton_Cuenta_Casilla, contador);
+			 
+			 contadorPushButtonSeleccionador boton2 (clk, rst, boton_Seleccionador,contador_seleccionador);
+			 
+			 
+			 
+			 
+			 
+			 deco decodificador (contador,rst, boton_seleccionador, cero,uno,dos,tres,cuatro,cinco, seis,siete,ocho);
+			 
+			 
+			 
+			 //------------------------------Casilla 0 --------------------------------------------//
+			 
+			 regfile1x24b memoria_Casilla0(clk,rst, cero, contador_seleccionador,rdData0); // Se guardó en memoria cual sprite va en esa casilla.
+			 
+			 
+			 
+			 muxSeleccionador casilla0 (106,80, contador_seleccionador,visible0,rgb0); // Selecciona cual sprite se usará en dicha casilla
+				           																				
+														
+			  
+			//------------------------------Casilla 1 --------------------------------------------//
+			 
+			 regfile1x24b memoria_Casilla1(clk,rst, uno, contador_seleccionador,rdData1);
+			 
+			 muxSeleccionador casilla1 (318,80, contador_seleccionador,visible1,rgb1);
+			 
+			 
+			 //------------------------------Casilla 2 --------------------------------------------//
+			 
+			 regfile1x24b memoria_Casilla2(clk,rst, dos, contador_seleccionador,rdData2);
+			 
+			 muxSeleccionador casilla2 (530,80, contador_seleccionador,visible2,rgb2);
+			 
+			 //------------------------------Casilla 3 --------------------------------------------//
+			 
+			 
+			 regfile1x24b memoria_Casilla3(clk,rst, tres, contador_seleccionador,rdData3);
+			 
+			 muxSeleccionador casilla3 (106,240, contador_seleccionador,visible3,rgb3);
+			 
+			 //------------------------------Casilla 4 --------------------------------------------//
+			 
+			 
+			 regfile1x24b memoria_Casilla4(clk,rst, cuatro, contador_seleccionador,rdData4);
+			 
+			 muxSeleccionador casilla4 (318,240, contador_seleccionador,visible4,rgb4);
+			 
+			 
+			 //------------------------------Casilla 5 --------------------------------------------//
+			 
+			 
+			 regfile1x24b memoria_Casilla5(clk,rst, cinco, contador_seleccionador,rdData5);
+			 
+			 muxSeleccionador casilla5 (530,240, contador_seleccionador,visible5,rgb5);
+			 
+			 
+			 //------------------------------Casilla 6 --------------------------------------------//
+			 
+			 
+			 regfile1x24b memoria_Casilla6(clk,rst, seis, contador_seleccionador,rdData6);
+			 
+			 muxSeleccionador casilla6 (106,400, contador_seleccionador,visible6,rgb6);
+			 
+			 
+			 //------------------------------Casilla 7 --------------------------------------------//
+			 
+			 
+			 regfile1x24b memoria_Casilla7(clk,rst, siete, contador_seleccionador,rdData7);
+			 
+			 muxSeleccionador casilla7 (318,400, contador_seleccionador,visible7,rgb7);
+			 
+			 //------------------------------Casilla 8 --------------------------------------------//
+			 
+			 
+			 regfile1x24b memoria_Casilla8(clk,rst, ocho, contador_seleccionador,rdData8);
+			 
+			 muxSeleccionador casilla8 (530,400, contador_seleccionador,visible8,rgb8);
+			 
+			 
+																										
+			 
+																											
+			 
+						 
+endmodule

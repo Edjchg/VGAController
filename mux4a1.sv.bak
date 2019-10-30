@@ -1,0 +1,12 @@
+module mux4a1 (input logic [23:0]cuadro1,cuadro2,lineas3, 
+					input logic select,
+				   output logic output_mux);
+		always @ (cuadro1 or cuadro2 or c or d or sel) begin
+      case (sel)
+         2'b00 : out <= 24'b0;
+         2'b01 : out <= 24'b111111110000000000000000;
+         2'b10 : out <= 24'b000000001111111100000000;
+         2'b11 : out <= 24'b111111111111111111111111;
+      endcase
+   end
+endmodule

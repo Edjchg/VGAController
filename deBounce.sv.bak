@@ -1,0 +1,42 @@
+//---------------------Debounce del push button-----------------------------
+
+//Cada vez que se presiona el push button se genera una señal basura, la cual 
+//hay que esperar que pase para poder tener una señal estable y poder decidir 
+//si la señal corresponde a un 0 o un 1 lógico.
+
+
+
+module deBounce (
+    input clk,
+    input inout_btn,
+    output logic o_state,
+    output logic o_ondn,
+    output logic o_onup
+    );
+
+    // sync with clock and combat metastability
+    logic sync_0, sync_1;
+    always @(posedge clk) sync_0 <= i_btn;
+    always @(posedge clk) sync_1 <= sync_0;
+
+    // 2.6 ms counter at 100 MHz
+    logic [18:0] counter;
+    logic idle = (o_state == sync_1);
+    logic max = &counter;
+
+    always @(posedge clk)
+    begin
+        if (idle)
+            counter <= 0;
+        else
+        begin
+            counter <= counter + 1;
+            if (max)
+                o_state <= ~o_state;
+        end
+    end
+
+    assign o_ondn = ~idle & max & ~o_state;
+    assign o_onup = ~idle & max & o_state;
+		
+endmodule

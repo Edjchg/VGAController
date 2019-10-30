@@ -1,0 +1,42 @@
+module botonMove #(DER_INICIAL = 0,
+						 IZQ_INICIAL = 100,
+						 UP_INICIAL  = 100,
+						 DOWN_INICIAL= 150)
+					  (input logic move,
+						output logic [11:0]bord_izq,
+						output logic [11:0]borde_der,
+						output logic [11:0]borde_up,
+						output logic [11:0]borde_down);
+						
+			always @(posedge clk)
+			begin
+				if (move) begin
+					borde_der ++;
+					borde_izq ++;
+					
+					if ( borde_izq == 640) begin
+						borde_izq <= IZQ_INICIAL;
+						borde_der <= DER_INICIAL;
+						
+						borde_up ++;
+						
+						borde_down ++;
+						
+					end
+					
+					if (borde_down == 480) begin
+						borde_izq <= IZQ_INICIAL;
+						borde_der <= DER_INICIAL;
+						borde_up  <= UP_INICIAL;
+						
+						borde_down <= DOWN_INICIAL;
+						
+					end
+					
+				end
+			end
+
+		
+
+
+endmodule

@@ -1,0 +1,16 @@
+module videoGenerador(input logic [9:0]cuentaX,cuentaY,
+							 output logic [7:0] r,g,b);
+							 
+		logic pixel,inrect;
+		
+		chargerenrom chargerenromb (cuentaY[8:3]+8'd120, cuentaX[2:0],cuentaY[2:0],pixel);
+		
+		rectgen rectgenb (cuentaX,cuentaY,10'd120,10'd150,10'd200,10'd230,inrect);
+		
+		assign {r,b} = (y[3] == 0)? {{8{pixel}},8'h00}:{8'h00,{8{pixel}}};
+		
+		assign g = inrect? 8'FF:8'h00;
+		
+		
+		
+endmodule

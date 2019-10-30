@@ -1,0 +1,5 @@
+module rectgen (input logic [9:0] cuentaX, cuentaY,left,top,right,bot,
+					 output logic inrect);
+			assign inrect = (cuentaX >= left & cuentaX < right & cuentaY >= top & cuentaY < bot);
+
+endmodule

@@ -1,0 +1,22 @@
+module deco (input logic [8:0] posicion_input,
+				 input logic rst,
+				 output logic cero,uno,dos,tres,cuatro,cinco, seis,siete,ocho);
+				 
+		
+		
+		always @(posicion_input) begin			
+				case(posicion_input)
+					9'b000000000 : cero <= 1'b1;
+					9'b000000001 : uno <= 1'b1;
+					9'b000000010 : dos <= 1'b1;
+					9'b000000011 : tres <= 1'b1;
+					9'b000000100 : cuatro <= 1'b1;
+					9'b000000101 : cinco <= 1'b1;
+					9'b000000110 : seis <= 1'b1;
+					9'b000000111 : siete <= 1'b1;
+					9'0000001000 : ocho <= 1'b1;
+				endcase			
+		end
+		
+		
+endmodule

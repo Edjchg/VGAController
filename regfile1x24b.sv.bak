@@ -1,0 +1,23 @@
+`timescale 1ns / 1ns
+
+module regfile1x24b
+  (input clk,
+   input reset,
+   input write,
+   
+   input [23:0] wrData, // informacion que se va a guardar en la direccion.
+   
+   output [23:0] rdDataA);
+
+   reg [15:0] 	 regfile [0:7];
+
+   
+
+   always @(posedge clk) begin
+      if (reset) begin
+	 rdData <= 24'b000000000000000000000000;
+      end else begin
+	 if (write) rdData <= wrData;
+      end // else: !if(reset)
+   end
+endmodule

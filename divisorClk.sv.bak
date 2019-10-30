@@ -1,0 +1,8 @@
+module divisorClk(logic input clock, output logic clock_25);
+
+	   reg [15:0] cnt;
+	   
+	   always @(posedge clk)
+      {clk_25, cnt} <= cnt + 16'h8000;
+
+endmodule
